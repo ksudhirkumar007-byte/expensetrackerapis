@@ -1,8 +1,12 @@
 package com.expensetracker.service;
 
+import com.expensetracker.client.CategoryClient;
 import com.expensetracker.dto.AnalyticsDTO;
+import com.expensetracker.dto.CategoryDTO;
 import com.expensetracker.dto.ExpenseDTO;
+import com.expensetracker.model.Category;
 import com.expensetracker.model.Expense;
+import com.expensetracker.repository.CategoryRepository;
 import com.expensetracker.repository.ExpenseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,10 +22,12 @@ import java.util.stream.Collectors;
 public class ExpenseServiceImpl implements ExpenseService {
 
     private final ExpenseRepository expenseRepository;
-
+    private final CategoryClient categoryClient;
     @Override
     public ExpenseDTO createExpense(ExpenseDTO expenseDTO) {
-        Expense expense = convertToEntity(expenseDTO);
+        CategoryDTO catById = categoryClient.getCategoryById(expenseDTO.getCategory_id());
+       Category category = convertToEntity(catById);
+        Expense expense = convertToEntity(expenseDTO,category);
         Expense savedExpense = expenseRepository.save(expense);
         return convertToDTO(savedExpense);
     }
@@ -30,9 +36,10 @@ public class ExpenseServiceImpl implements ExpenseService {
     public ExpenseDTO updateExpense(Long id, ExpenseDTO expenseDTO) {
         Expense expense = expenseRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Expense not found with id: " + id));
-
+        CategoryDTO catById = categoryClient.getCategoryById(expenseDTO.getCategory_id());
+        Category cat =convertToEntity(catById);
         expense.setAmount(expenseDTO.getAmount());
-        expense.setCategory(expenseDTO.getCategory());
+        expense.setCategory(cat);
         expense.setDescription(expenseDTO.getDescription());
         expense.setDate(expenseDTO.getDate());
 
@@ -66,8 +73,10 @@ public class ExpenseServiceImpl implements ExpenseService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<ExpenseDTO> getExpensesByCategory(String category) {
-        return expenseRepository.findByCategory(category).stream()
+    public List<ExpenseDTO> getExpensesByCategory(long category) {
+        CategoryDTO categoryById = categoryClient.getCategoryById(category);
+        Category category1 = convertToEntity(categoryById);
+        return expenseRepository.findByCategory(category1).stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
@@ -139,18 +148,22 @@ public class ExpenseServiceImpl implements ExpenseService {
         return ExpenseDTO.builder()
                 .id(expense.getId())
                 .amount(expense.getAmount())
-                .category(expense.getCategory())
+                .category_id(expense.getCategory().getId())
                 .description(expense.getDescription())
                 .date(expense.getDate())
                 .build();
     }
 
-    private Expense convertToEntity(ExpenseDTO dto) {
+
+    private Expense convertToEntity(ExpenseDTO dto,Category category) {
         return Expense.builder()
                 .amount(dto.getAmount())
-                .category(dto.getCategory())
+                .category(category)
                 .description(dto.getDescription())
                 .date(dto.getDate())
                 .build();
+    }
+    private Category convertToEntity(CategoryDTO category) {
+        return Category.builder().id(category.getId()).type(category.getType()).name(category.getName()).budget(category.getBudget()).build();
     }
 }

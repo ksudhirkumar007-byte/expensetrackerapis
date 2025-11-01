@@ -1,5 +1,6 @@
 package com.expensetracker.repository;
 
+import com.expensetracker.model.Category;
 import com.expensetracker.model.Expense;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -10,7 +11,7 @@ import java.util.List;
 @Repository
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 
-    List<Expense> findByCategory(String category);
+    List<Expense> findByCategory(Category category);
 
     List<Expense> findByDateBetween(LocalDate startDate, LocalDate endDate);
 

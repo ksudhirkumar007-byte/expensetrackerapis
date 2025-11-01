@@ -22,9 +22,10 @@ public class Expense {
     @Column(nullable = false)
     private Double amount;
 
-    @NotBlank(message = "Category is required")
-    @Column(nullable = false)
-    private String category;
+    @NotNull(message = "category is required")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 
     @NotBlank(message = "Description is required")
     @Column(nullable = false)

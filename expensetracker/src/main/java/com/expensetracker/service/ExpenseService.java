@@ -17,7 +17,7 @@ public interface ExpenseService {
 
     List<ExpenseDTO> getAllExpenses();
 
-    List<ExpenseDTO> getExpensesByCategory(String category);
+    List<ExpenseDTO> getExpensesByCategory(long category);
 
     List<ExpenseDTO> getExpensesByDateRange(LocalDate startDate, LocalDate endDate);
 
