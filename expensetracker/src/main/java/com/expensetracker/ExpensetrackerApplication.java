@@ -9,7 +9,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class ExpensetrackerApplication {
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(ExpensetrackerApplication.class, args);
 	}
 

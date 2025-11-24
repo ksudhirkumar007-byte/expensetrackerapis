@@ -91,6 +91,14 @@ public class ExpenseServiceImpl implements ExpenseService {
 
     @Override
     @Transactional(readOnly = true)
+    public List<ExpenseDTO> getExpensesByMonth(String month) {
+        return expenseRepository.findByMonth(month).stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public AnalyticsDTO getAnalytics() {
         Double totalExpenses = expenseRepository.getTotalExpenses();
         if (totalExpenses == null) totalExpenses = 0.0;

@@ -31,6 +31,9 @@ public class Expense {
     @Column(nullable = false)
     private String description;
 
+    @Column(nullable = false)
+    private String month;
+
     @NotNull(message = "Date is required")
     @Column(nullable = false)
     private LocalDate date;

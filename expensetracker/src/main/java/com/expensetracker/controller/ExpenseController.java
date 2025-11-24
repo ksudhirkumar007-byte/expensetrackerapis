@@ -52,6 +52,12 @@ public class ExpenseController {
         return ResponseEntity.ok(expenses);
     }
 
+    @GetMapping("/{month}")
+    public ResponseEntity<List<ExpenseDTO>> getAllExpenses(@PathVariable String month) {
+        List<ExpenseDTO> expenses = expenseService.getExpensesByMonth();
+        return ResponseEntity.ok(expenses);
+    }
+
     @GetMapping("/category/{category}")
     public ResponseEntity<List<ExpenseDTO>> getExpensesByCategory(@PathVariable long category) {
         List<ExpenseDTO> expenses = expenseService.getExpensesByCategory(category);
