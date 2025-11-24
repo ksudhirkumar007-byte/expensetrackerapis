@@ -13,6 +13,8 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 
     List<Expense> findByCategory(Category category);
 
+    List<Expense> findByMonth(String month);
+
     List<Expense> findByDateBetween(LocalDate startDate, LocalDate endDate);
 
     @Query("SELECT e.category, SUM(e.amount) FROM Expense e GROUP BY e.category")
