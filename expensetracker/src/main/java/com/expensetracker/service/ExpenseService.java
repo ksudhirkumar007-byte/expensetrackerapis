@@ -21,6 +21,6 @@ public interface ExpenseService {
 
     List<ExpenseDTO> getExpensesByDateRange(LocalDate startDate, LocalDate endDate);
 
-    List<ExpenseDTO> getExpenseByMonth(String month);
+    List<ExpenseDTO> getExpensesByMonth(String month);
     AnalyticsDTO getAnalytics();
 }
