@@ -54,6 +54,7 @@ public class ExpenseController {
 
     @GetMapping("/month/{month}")
     public ResponseEntity<List<ExpenseDTO>> getAllExpenses(@PathVariable String month) {
+        System.out.println("expense service triggered");
         List<ExpenseDTO> expenses = expenseService.getExpensesByMonth(month);
         return ResponseEntity.ok(expenses);
     }

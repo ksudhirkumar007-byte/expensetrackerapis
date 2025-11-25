@@ -92,7 +92,9 @@ public class ExpenseServiceImpl implements ExpenseService {
     @Override
     @Transactional(readOnly = true)
     public List<ExpenseDTO> getExpensesByMonth(String month) {
-        return expenseRepository.findByMonth(month).stream()
+     List<Expense> expenses = expenseRepository.findByMonth(month);
+        System.out.println("expenses from db are "+expenses.size());
+        return expenses.stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
