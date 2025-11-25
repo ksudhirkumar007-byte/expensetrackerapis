@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/expenses")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "https://expensetrackerupdatedui.onrender.com/")
+@CrossOrigin(origins = "https://expensetrackerupdatedui.onrender.com")
 public class ExpenseController {
 
     private final ExpenseService expenseService;
@@ -52,7 +52,7 @@ public class ExpenseController {
         return ResponseEntity.ok(expenses);
     }
 
-    @GetMapping("/{month}")
+    @GetMapping("/month/{month}")
     public ResponseEntity<List<ExpenseDTO>> getAllExpenses(@PathVariable String month) {
         List<ExpenseDTO> expenses = expenseService.getExpensesByMonth(month);
         return ResponseEntity.ok(expenses);
