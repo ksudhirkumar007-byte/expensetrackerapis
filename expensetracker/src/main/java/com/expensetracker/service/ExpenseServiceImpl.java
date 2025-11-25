@@ -159,6 +159,7 @@ public class ExpenseServiceImpl implements ExpenseService {
                 .category_id(expense.getCategory().getId())
                 .description(expense.getDescription())
                 .date(expense.getDate())
+                .month(expense.getMonth())
                 .build();
     }
 
@@ -169,6 +170,7 @@ public class ExpenseServiceImpl implements ExpenseService {
                 .category(category)
                 .description(dto.getDescription())
                 .date(dto.getDate())
+                .month(dto.getMonth())
                 .build();
     }
     private Category convertToEntity(CategoryDTO category) {
