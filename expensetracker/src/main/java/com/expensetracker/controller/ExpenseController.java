@@ -20,6 +20,11 @@ public class ExpenseController {
 
     private final ExpenseService expenseService;
 
+    @GetMapping("/keepalive")
+    public String ping() {
+        return "alive";
+    }
+
     @PostMapping
     public ResponseEntity<ExpenseDTO> createExpense(@Valid @RequestBody ExpenseDTO expenseDTO) {
         ExpenseDTO created = expenseService.createExpense(expenseDTO);
