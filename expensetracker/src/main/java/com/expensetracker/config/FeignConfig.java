@@ -2,6 +2,7 @@ import feign.Feign;
 import feign.okhttp.OkHttpClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import com.expensetracker.client.CategoryClient;
 
 @Configuration
 public class FeignConfig {
