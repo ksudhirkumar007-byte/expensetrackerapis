@@ -20,8 +20,9 @@ public class ExpenseController {
 
     private final ExpenseService expenseService;
 
-    @GetMapping("/keepalive")
+    @GetMapping("/health")
     public String ping() {
+        System.out.println("keeping expenses services alive");
         return "alive";
     }
 

@@ -1,18 +1,15 @@
 package com.expensetracker.client;
 
 import com.expensetracker.dto.CategoryDTO;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
+import feign.Param;
+import feign.RequestLine;
 import java.util.List;
 
-@FeignClient(name = "category-service", url = "https://categoryapis.onrender.com")  // Use real URL or Discovery service name
 public interface CategoryClient {
 
-    @GetMapping("api/categories/{id}")
-    CategoryDTO getCategoryById(@PathVariable("id") Long id);
+    @RequestLine("GET /api/categories/{id}")
+    CategoryDTO getCategoryById(@Param("id") Long id);
 
-    @GetMapping("api/categories")
+    @RequestLine("GET /api/categories")
     List<CategoryDTO> getAllCategories();
 }
