@@ -77,7 +77,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version> <!-- pick a release compatible with your Spring Boot -->
+                <version>2023.0.4</version> <!-- or a train compatible with your Spring Boot -->
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
