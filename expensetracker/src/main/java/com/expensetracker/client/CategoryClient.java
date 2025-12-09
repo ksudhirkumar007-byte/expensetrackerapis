@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "category-service", url = "https://categoryapis.onrender.com")  // Use real URL or Discovery service name
+@FeignClient(name = "category-service", url = "http://65.2.70.189:8081")  // Use real URL or Discovery service name
 public interface CategoryClient {
 
     @GetMapping("api/categories/{id}")
