@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**")
-                        .allowedOrigins("https://expensetrackerupdatedui.onrender.com", "http://localhost:3000","http://65.2.70.189:3000")
+                        .allowedOrigins("https://expensetrackerupdatedui.onrender.com", "http://localhost:3000","http://65.2.70.189:3000","http://localhost")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
