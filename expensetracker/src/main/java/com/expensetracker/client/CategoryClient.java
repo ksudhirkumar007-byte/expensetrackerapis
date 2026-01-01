@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "category-service", url = "http://65.2.70.189:8081")  // Use real URL or Discovery service name
+@FeignClient(name = "category-service", url = "http://xpenss.in")  // Use real URL or Discovery service name
 public interface CategoryClient {
 
-    @GetMapping("api/categories/{id}")
+    @GetMapping("/api/categories/{id}")
     CategoryDTO getCategoryById(@PathVariable("id") Long id);
 
-    @GetMapping("api/categories")
+    @GetMapping("/api/categories")
     List<CategoryDTO> getAllCategories();
 }
