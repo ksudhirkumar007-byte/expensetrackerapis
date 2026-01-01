@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/expenses")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "https://expensetrackerupdatedui.onrender.com")
+@CrossOrigin(origins = "http://xpenss.in")
 public class ExpenseController {
 
     private final ExpenseService expenseService;
