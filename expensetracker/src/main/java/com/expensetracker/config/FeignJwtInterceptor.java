@@ -12,14 +12,17 @@ public class FeignJwtInterceptor implements RequestInterceptor {
     @Override
     public void apply(RequestTemplate template) {
 
-        Authentication authentication =
-                SecurityContextHolder.getContext().getAuthentication();
+        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
 
-        if (authentication != null && authentication.getCredentials() != null) {
-            template.header(
-                    "Authorization",
-                    "Bearer " + authentication.getCredentials().toString()
-            );
+        if (requestAttributes instanceof ServletRequestAttributes servletAttrs) {
+
+            HttpServletRequest request = servletAttrs.getRequest();
+
+            String authHeader = request.getHeader("Authorization");
+
+            if (authHeader != null && authHeader.startsWith("Bearer ")) {
+                template.header("Authorization", authHeader);
+            }x
         }
     }
 }
