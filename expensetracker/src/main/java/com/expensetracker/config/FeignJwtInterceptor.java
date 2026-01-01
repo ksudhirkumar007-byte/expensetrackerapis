@@ -22,7 +22,7 @@ public class FeignJwtInterceptor implements RequestInterceptor {
 
             if (authHeader != null && authHeader.startsWith("Bearer ")) {
                 template.header("Authorization", authHeader);
-            }x
+            }
         }
     }
 }
