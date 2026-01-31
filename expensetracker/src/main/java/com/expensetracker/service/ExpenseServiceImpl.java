@@ -50,8 +50,8 @@ public class ExpenseServiceImpl implements ExpenseService {
     @Override
     public void deleteExpense(Long id) {
         if (!expenseRepository.existsById(id)) {
-            throw new RuntimeException("Expense not found with id: " + id);
-        }
+            System.out.println("the expense doesnt exist with Id "+id);
+            }
         expenseRepository.deleteById(id);
     }
 
